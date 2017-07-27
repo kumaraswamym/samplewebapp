@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ibm.services</groupId>
+  <artifactId>samplewebapp</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+  <name>webapp Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+ 
+ <properties>
+   <junit.version>4.12</junit.version>
+   <servlet.version>3.0-alpha-1</servlet.version>
+   <tomcat.url>http://harihara:8003/manager/text</tomcat.url>
+ </properties>
+  
+  <dependencies>
+  <!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>${junit.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>${servlet.version}</version> 
+    
+</dependency>
+
+<dependency>
+  <groupId>com.ibm.services</groupId>
+  <artifactId>sampleapp</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</dependency>  
+  
+</dependencies>
+
+  <build>
+    <finalName>samplewebapp</finalName>
+    <pluginManagement>
+      <plugins>
+         
+      <plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>${tomcat.url}</url>
+					<server>tomcatdeploy</server>
+				</configuration>
+			</plugin>
+			
+			<!-- Maven compiler plugin -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+  <distributionManagement>
+  <snapshotRepository>
+     <id>jfrog</id>
+     <name>snapshot</name>
+     <url>http://harihara:8081/artifactory/webapp_local</url>
+  </snapshotRepository>
+
+  <repository>
+    
+    <id>jfrog</id>
+     <name>snapshot</name>
+     <url>http://harihara:8081/artifactory/webapp_local</url>
+  </repository>
+</distributionManagement>
+</project>
